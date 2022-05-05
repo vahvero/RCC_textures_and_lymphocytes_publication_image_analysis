@@ -28,8 +28,9 @@ The training code `train_network.py` will train models classifying 256x256px ima
 Parameters to edit:  
 Lines 28-29
 ```# root = "binary_lymphocytes"
-root = "tissue_classification"```
-Comment the raw which you do not want to train. Here, the code will train the tissue texture classifier, but not the lymphocyte classifier.  
+root = "tissue_classification"
+```
+Comment the row, which you do not want to train. Here, the code will train the tissue texture classifier, but not the lymphocyte classifier.  
 
 Lines 112-120  
 ```model_name = "resnet18"
@@ -40,7 +41,8 @@ models = {
     "resnet50": torchvision.models.resnet50,
     "resnet101": torchvision.models.resnet101,
     "resnet152": torchvision.models.resnet152,
-}```
+}
+```
 The `model_name` parameter is used to define the model infrastructure to be trained. Here, "resnet18" is ResNet-18. The alternatives are listed in rows 115-119.  
 
 
