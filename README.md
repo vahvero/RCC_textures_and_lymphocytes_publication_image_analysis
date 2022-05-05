@@ -25,7 +25,7 @@ pip install -r requirements.txt
 **1. Training**  
 
 **Annotation data**  
-First, you need to download the annotation data consisting of 256x256px image tiles (n=39,473 texture images and 25,097 lymphocyte images) manually-classified. These can be downloaded from [Zenodo](https://zenodo.org/deposit/6384627). Move the lymphocyte images to the `binary_lymphocytes` folder and the tissue texture images to the `tissue_classification` folder.
+First, you need to download the annotation data consisting of 256x256px image tiles (n=39,458 texture images and 25,097 lymphocyte images) manually-classified. These can be downloaded from [Zenodo](https://zenodo.org/deposit/6384627). Move the lymphocyte images to the `binary_lymphocytes` folder and the tissue texture images to the `tissue_classification` folder.
 
 **Code**  
 The training code `train_network.py` will train models classifying 256x256px image tiles into tissue textures (Cancer, Stroma, Normal, Blood, Empty or Other) or lymphocyte density (Low or High). In addition, the code will produce confusion matrices on the classification accuracy in the test set (10%) and in the entire annotated image dataset. Training took ~1 hour with 1 GPU.
