@@ -23,7 +23,12 @@ pip install -r requirements.txt
 ## RUNNING
 
 **1. Training**  
-The training code `train_network.py` will train models classifying 256x256px image tiles into tissue textures (Cancer, Stroma, Normal, Blood, Empty or Other) or lymphocyte density (Low or High). In addition, the code will produce confusion matrices on the classification accuracy in the test set (10%) and in the entire annotated image dataset (n=39,473 texture images and 25,097 lymphocyte images). Training took ~1 hour with 1 GPU.
+
+**Annotation data**  
+First, you need to download the annotation data consisting of 256x256px image tiles (n=39,473 texture images and 25,097 lymphocyte images) manually-classified. These can be downloaded from [Zenodo](https://zenodo.org/deposit/6384627). Move the lymphocyte images to the `binary_lymphocytes` folder and the tissue texture images to the `tissue_classification` folder.
+
+**Code**  
+The training code `train_network.py` will train models classifying 256x256px image tiles into tissue textures (Cancer, Stroma, Normal, Blood, Empty or Other) or lymphocyte density (Low or High). In addition, the code will produce confusion matrices on the classification accuracy in the test set (10%) and in the entire annotated image dataset. Training took ~1 hour with 1 GPU.
 
 Parameters to edit:  
 Lines 28-29
@@ -52,6 +57,18 @@ nohup python -u train_network.py > cmd_training.log &
 ```
 
 **2. Inference**  
+**Image data**  
+First, you need to download the TCGA-KIRK image data consisting of SVS-formatted whole-slide images from the [GDC portal](https://portal.gdc.cancer.gov/). The images do not need to be within this repository. The default folder location is `/mnt/data/RCC` and its structure looks like
+|--|TCGA-3Z-A93Z
+|--|--|TCGA-3Z-A93Z.svs"
+...
+...
+...
+|--|TCGA-T7-A92I
+|--|--|TCGA-T7-A92I.svs"  
+
+
+**Code**  
 The training code `inference.py` will run the models on the TCGA-KIRC image dataset and save the texture type and lymphocyte proportion at the tile level. Inference took 2 days with 20x6Gb CPUs.  
 
 Parameters to edit:  
@@ -67,6 +84,12 @@ force_classification = True
 force_binary_recognition = False
 ```  
 
+Line 35
+```
+rcc_folder = "/mnt/data/RCC"
+```
+Replace this to inform where your TCGA-KIRC whole-slide images reside.  
+
 Line 57
 ```classification_model = models["resnet18"](```
 If you have trained the texture classification model with another infrastructure, replace the `resnet18` with that, for example `resnet34` for ResNet-34.  
@@ -78,11 +101,12 @@ If you have trained the lymphocyte classification model with another infrastruct
 - Line 102, the path to folder of the WSI `svs`-files is script spesific and must be corrected
 - The unique TCGA identifier is expected to be the first 14 letters of the WSI filename. If this is not the case, `utils.extract_tcga_identifier` must be altered to extract the identifer for saving the results.  
 
-After these alterations, the inference can be ran with:  
+After these alterations, the results will appear in the `results` folder by running the inference with:  
 
 ```sh
 nohup python inference.py
 ```
+
 
 **3. Export**  
 To export the image analysis data to a `raw_data.xlsx` file (495 rows, 78 columns), run
