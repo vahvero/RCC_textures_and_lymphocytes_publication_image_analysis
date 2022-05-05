@@ -36,13 +36,13 @@ rcc_folder = "/mnt/data/RCC"
 """Folder where tcga SVS files reside"""
 
 logging.basicConfig(
-    filename="interference.log",
+    filename="inference.log",
     filemode="w",
     format="[%(asctime)s]: %(message)s",
     datefmt="%d/%m/%Y %I:%M:%S",
 )
 
-logger = logging.getLogger("interference_logger")
+logger = logging.getLogger("inference_logger")
 logger.setLevel(logging.DEBUG)
 logger.info(
     f"Executing with"
