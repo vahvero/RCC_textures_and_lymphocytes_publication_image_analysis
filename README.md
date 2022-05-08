@@ -7,7 +7,7 @@ These codes will help you reproduce or repurpose the image analysis pipeline of 
 
 ## USEFUL LINKS
 **[CODE](https://github.com/obruck/RCC_textures_and_lymphocytes_publication_data_analysis)** &emsp; &emsp; &emsp; &emsp; &nbsp; &nbsp; The codes to reproduce the analyses using image analysis data and TCGA-KIRC clinical, transcriptome and genomic data. To be run after the image analysis pipeline of this repository.  
-**[DATA](https://zenodo.org/deposit/6384627)** &emsp; &emsp; &emsp; &emsp; &emsp; The annotated texture and lymphocyte image data are located in Zenodo.  
+**[DATA](https://zenodo.org/deposit/6528599)** &emsp; &emsp; &emsp; &emsp; &emsp; The annotated texture and lymphocyte image data are located in Zenodo.  
 **[VISUALIZATION](http://hruh-20.it.helsinki.fi/rcc_texture_lymphocytes/)** &emsp; &nbsp;The TissUUmaps platform to visualize the texture and lymphocyte data.
 
 
@@ -25,7 +25,14 @@ pip install -r requirements.txt
 **1. Training**  
 
 **Annotation data**  
-First, you need to download the annotation data consisting of 256x256px image tiles (n=39,458 texture images and 25,097 lymphocyte images) manually-classified. These can be downloaded from [Zenodo](https://zenodo.org/deposit/6384627). Move the lymphocyte images to the `binary_lymphocytes` folder and the tissue texture images to the `tissue_classification` folder.
+First, you need to download the annotated image data. These can be downloaded from [Zenodo](https://zenodo.org/deposit/6528599).  
+
+The `tissue_classification` file contains 300x300px tissue texture image tiles (n=39,458) representing renal cancer (“cancer”; n=11,755, 29.7%); normal renal (“normal”; n=6,313, 16.0%); stromal (“stroma”; n= 3,027, 7.7%) including smooth muscle, fibrous stroma and blood vessels; red blood cells (“blood”; n=544, 0.9%); empty background (“empty”; n=11,609, 29.4%); and other textures including necrotic, torn and adipose tissue (“other”; n=6,210, 15.7%). Tiles were randomly selected from the TCGA-KIRC WSI collection.  
+
+The binary_lymphocytes file contains mostly 256x256px-sized but also smaller image tiles of Low (n=20,092) or High (n=5,003, 19.9%) lymphocyte density (n=25,095, 80.1%). These images have been randomly selected from the TCGA-KIRC WSI collection.  
+
+Move the lymphocyte images to the `binary_lymphocytes` folder and the tissue texture images to the `tissue_classification` folder.  
+
 
 **Code**  
 The training code `train_network.py` will train models classifying 256x256px image tiles into tissue textures (Cancer, Stroma, Normal, Blood, Empty or Other) or lymphocyte density (Low or High). In addition, the code will produce confusion matrices on the classification accuracy in the test set (10%) and in the entire annotated image dataset. Training took ~1 hour with 1 GPU.
