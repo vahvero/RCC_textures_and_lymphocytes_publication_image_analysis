@@ -29,7 +29,7 @@ First, you need to download the annotated image data. These can be downloaded fr
 
 The `tissue_classification` file contains 300x300px tissue texture image tiles (n=39,458) representing renal cancer (“cancer”; n=11,755, 29.7%); normal renal (“normal”; n=6,313, 16.0%); stromal (“stroma”; n= 3,027, 7.7%) including smooth muscle, fibrous stroma and blood vessels; red blood cells (“blood”; n=544, 0.9%); empty background (“empty”; n=11,609, 29.4%); and other textures including necrotic, torn and adipose tissue (“other”; n=6,210, 15.7%). Tiles were randomly selected from the TCGA-KIRC WSI collection.  
 
-The binary_lymphocytes file contains mostly 256x256px-sized but also smaller image tiles of Low (n=20,092) or High (n=5,003, 19.9%) lymphocyte density (n=25,095, 80.1%). These images have been randomly selected from the TCGA-KIRC WSI collection.  
+The `binary_lymphocytes` file contains mostly 256x256px-sized but also smaller image tiles of Low (n=20,092) or High (n=5,003, 19.9%) lymphocyte density (n=25,095, 80.1%). These images have been randomly selected from the TCGA-KIRC WSI collection.  
 
 Move the lymphocyte images to the `binary_lymphocytes` folder and the tissue texture images to the `tissue_classification` folder.  
 
