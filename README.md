@@ -66,14 +66,14 @@ nohup python -u train_network.py > cmd_training.log &
 **2. Inference**  
 **Image data**  
 First, you need to download the TCGA-KIRK image data consisting of SVS-formatted whole-slide images from the [GDC portal](https://portal.gdc.cancer.gov/). The images do not need to be within this repository. The default folder location is `/mnt/data/RCC` and its structure looks like
-|--|TCGA-3Z-A93Z
-|--|--|TCGA-3Z-A93Z.svs"
-...
-...
-...
-|--|TCGA-T7-A92I
-|--|--|TCGA-T7-A92I.svs"  
-
+```|--|TCGA-3Z-A93Z  
+|--|--|TCGA-3Z-A93Z.svs  
+...  
+...  
+...  
+|--|TCGA-T7-A92I  
+|--|--|TCGA-T7-A92I.svs  
+```
 
 **Code**  
 The training code `inference.py` will run the models on the TCGA-KIRC image dataset and save the texture type and lymphocyte proportion at the tile level. Inference took 2 days with 20x6Gb CPUs.  
